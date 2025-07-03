@@ -63,4 +63,43 @@ class CurrencyFormatter {
     final amount = parseAmount(text);
     return amount >= 0 && amount <= AppConstants.maxTransactionAmount;
   }
+
+  /// Formats a number as currency
+  static String formatForInput(double amount) {
+    return amount.toStringAsFixed(2);
+  }
+
+  /// Formats amount for display with no decimal if it's a whole number
+  static String formatClean(double amount) {
+    if (amount == amount.roundToDouble()) {
+      return format(amount).replaceAll('.00', '');
+    }
+    return format(amount);
+  }
+
+  /// Gets currency without symbol for calculations
+  static String formatNumber(double amount) {
+    return NumberFormat('#,##0.00').format(amount);
+  }
+
+  /// Converts string currency to double
+  static double currencyToDouble(String currency) {
+    return parseAmount(currency);
+  }
+
+  /// Format percentage
+  static String formatPercentage(double percentage) {
+    return '${percentage.toStringAsFixed(1)}%';
+  }
+
+  /// Format large numbers with K, M suffixes
+  static String formatShort(double amount) {
+    if (amount.abs() >= 1000000) {
+      return '${(amount / 1000000).toStringAsFixed(1)}M';
+    } else if (amount.abs() >= 1000) {
+      return '${(amount / 1000).toStringAsFixed(1)}K';
+    } else {
+      return amount.toStringAsFixed(0);
+    }
+  }
 }
