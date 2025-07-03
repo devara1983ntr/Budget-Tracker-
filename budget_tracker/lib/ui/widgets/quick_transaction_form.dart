@@ -382,9 +382,11 @@ class _QuickTransactionFormState extends State<QuickTransactionForm> {
         });
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to capture image: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to capture image: $e')),
+        );
+      }
     }
   }
 
@@ -397,9 +399,11 @@ class _QuickTransactionFormState extends State<QuickTransactionForm> {
         });
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to pick image: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to pick image: $e')),
+        );
+      }
     }
   }
 
@@ -424,9 +428,11 @@ class _QuickTransactionFormState extends State<QuickTransactionForm> {
       );
 
       if (success) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Transaction added successfully')),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Transaction added successfully')),
+          );
+        }
         
         // Reset form
         _amountController.clear();
@@ -438,14 +444,18 @@ class _QuickTransactionFormState extends State<QuickTransactionForm> {
         
         widget.onComplete?.call();
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to add transaction')),
-        );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Failed to add transaction')),
+          );
+        }
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
     } finally {
       setState(() {
         _isLoading = false;

@@ -415,9 +415,4 @@ class TransactionProvider extends ChangeNotifier {
     if (!_hasMoreData || _isLoading) return;
     await loadTransactions();
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }

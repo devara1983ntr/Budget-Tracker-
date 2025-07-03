@@ -54,9 +54,9 @@ class CurrencyFormatter {
 
   static String formatAmountCompact(double amount) {
     if (amount >= 1000000) {
-      return '${_currentSymbol}${(amount / 1000000).toStringAsFixed(1)}M';
+      return '$_currentSymbol${(amount / 1000000).toStringAsFixed(1)}M';
     } else if (amount >= 1000) {
-      return '${_currentSymbol}${(amount / 1000).toStringAsFixed(1)}K';
+      return '$_currentSymbol${(amount / 1000).toStringAsFixed(1)}K';
     } else {
       return formatAmount(amount);
     }
