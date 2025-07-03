@@ -77,6 +77,9 @@ dependencies:
   
   # Animations
   lottie: ^3.1.2
+  
+  # Security/Encryption
+  crypto: ^3.0.3
 
 dev_dependencies:
   flutter_test:

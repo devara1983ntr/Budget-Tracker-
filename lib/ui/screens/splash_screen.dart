@@ -57,11 +57,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     
     // Check if it's the first launch
     if (prefs.isFirstLaunch) {
-      context.go('/onboarding');
+      if (mounted) context.go('/onboarding');
     } else if (prefs.isSecurityEnabled) {
-      context.go('/app-lock');
+      if (mounted) context.go('/app-lock');
     } else {
-      context.go('/dashboard');
+      if (mounted) context.go('/dashboard');
     }
   }
 
