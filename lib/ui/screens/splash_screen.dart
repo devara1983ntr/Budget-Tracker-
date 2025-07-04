@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../utils/app_constants.dart';
 import '../../services/preferences_service.dart';
+import '../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -85,17 +86,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               const Spacer(flex: 2),
               
               // Animated App Logo
-              AnimatedBuilder(
-                animation: _animationController,
-                builder: (context, child) {
-                  return FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: ScaleTransition(
-                      scale: _scaleAnimation,
-                      child: _buildAppLogo(),
-                    ),
-                  );
-                },
+              AnimatedAppLogo(
+                size: 120,
+                showBackground: true,
+                duration: const Duration(milliseconds: 2000),
               ),
               
               const SizedBox(height: 32),
@@ -178,73 +172,5 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     );
   }
 
-  Widget _buildAppLogo() {
-    return Container(
-      width: 120,
-      height: 120,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            // Stylized "B" for Budget
-            Text(
-              'B',
-              style: TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor,
-                letterSpacing: -2,
-              ),
-            ),
-            
-            // Currency symbol overlay
-            Positioned(
-              top: 28,
-              right: 28,
-              child: Container(
-                width: 24,
-                height: 24,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(
-                  child: Text(
-                    '\$',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            
-            // Rising arrow
-            Positioned(
-              bottom: 20,
-              right: 20,
-              child: Icon(
-                Icons.trending_up,
-                size: 20,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+
 }
