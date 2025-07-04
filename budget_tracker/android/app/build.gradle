@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.roshan.budgettracker.budget_tracker"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
